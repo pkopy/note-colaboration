@@ -29,9 +29,10 @@ class App extends Component {
     ]
   }
   addNote = (newNote) => {
-    
     let arr = this.state.notes;
     newNote.id = arr.length;
+    newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
+    
     arr.push(newNote)
     this.setState({notes: arr})
   }
@@ -72,7 +73,7 @@ class App extends Component {
         />
         <div className="add-note-button" onClick={() => {
             this.addNote({
-              color: 'red',
+              
               title: 'new',
               date: new Date(),
               done: false,
