@@ -37,13 +37,15 @@ class App extends Component {
   }
   addDay = (note) => {
     note.deadLine.setDate(note.deadLine.getDate() + 1)
-    let arr =this.state.notes.filter((n) => n.id !== note.id)
-    arr.push(note)
-    this.setState({notes: arr})
+    this.changeNote(note)
   }
 
   minusDay =(note) => {
     note.deadLine.setDate(note.deadLine.getDate() - 1)
+    this.changeNote(note)
+  }
+
+  changeNote = (note) => {
     let arr =this.state.notes.filter((n) => n.id !== note.id)
     arr.push(note)
     this.setState({notes: arr})
