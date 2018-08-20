@@ -50,7 +50,7 @@ class App extends Component {
   }
   dateToString = (note) => {
     
-    return `Today is: ${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}
+    return `${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}
             Deadline: ${note.deadLine.getDate()}`;
 
   }
