@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.note {
+  background: #222;
+  color: #fff;
+  max-width: 150px;
+  min-height: 200px;
+  border: 2px solid rgb(141, 136, 136);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  position: absolute;
+  
+}
+.notes-list {
+  list-style-type: none;
+  display: flex;
+}
+.change-deadline-container {
+  display: flex;
+
+}
+.plus {
+  width: 50px;
+  height: 50px;
+  font-size: 2.5em;
+  background-image: url('./img/plus.svg');
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  background-size: 1.2em;
+  font-size: 1.2em;
+  border: 0;
+  outline: none;
+}
+
+.minus {
+  width: 50px;
+  height: 50px;
+  font-size: 2.5em;
+  background-image: url('./img/minus.svg');
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  background-size: 1.2em;
+  font-size: 1.2em;
+  border: 0;
+  outline: none;
+}
+
+.add-note-button {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-image: url('./img/plus_white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #3390dc;
+  border-radius: 40px;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
