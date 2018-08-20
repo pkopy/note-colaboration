@@ -61,6 +61,11 @@ body {
   background-position: center;
   background-color: #3390dc;
   border-radius: 40px;
+  transition-duration: 0.4s;
+}
+.add-note-button:hover {
+  box-shadow: 1px 0px 7px 0px #000;
+  cursor: pointer;
 }
 .App {
   text-align: center;
