@@ -49,6 +49,8 @@ class App extends Component {
 
     console.log(maxId)
     newNote.id = maxId.id+1;
+    newNote.date =new Date();
+    newNote.deadLine = new Date();
     newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
     
     arr.push(newNote)
@@ -72,8 +74,7 @@ class App extends Component {
   }
   dateToString = (note) => {
     
-    return `${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}
-            Deadline: ${note.deadLine.getDate()}`;
+    return `${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}`;
 
   }
   render() {
@@ -88,12 +89,23 @@ class App extends Component {
             addDay={this.addDay}
             notes={notes}
             dateToString={this.dateToString}
+            
+
+            
           />
+          
           
 
         )}/>
 
-        <Route path="/new" component={NewNote}/>
+        <Route path="/new" render={({ history }) =>(
+          <NewNote 
+          addNote={(note) => {
+            this.addNote(note);
+            history.push('/')
+          }}
+          /> 
+        )}/>
         {/* <div className="add-note-button" onClick={() => {
             this.addNote({
               
@@ -110,10 +122,7 @@ class App extends Component {
         >
 
         </div> */}
-        <Link
-          to="/new"
-          className="add-note-button"
-        ></Link>
+        
 
       </div>
     );

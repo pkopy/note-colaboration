@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class Notes extends Component {
   render () {
@@ -14,6 +15,9 @@ class Notes extends Component {
             <li key={note.id} className="notes-list">
               <div className="note" style={{background: note.color, left:note.id*200+'px'}} >
                 {dateToString(note)}
+
+                <div>Title: {note.title}</div>
+                <div>Content: {note.content}</div>
                 <div className="change-deadline-container">
                   <div className="plus" onClick={() => {addDay(note); console.log(notes)}} >
                     
@@ -23,10 +27,15 @@ class Notes extends Component {
                   </div>
 
                 </div>
+                <div>Deadline: {note.deadLine.getDate()}</div>
               </div>
             </li>
           )}
         </ol>
+        <Link
+          to="/new"
+          className="add-note-button"
+        ></Link>
 
       </div>
       
