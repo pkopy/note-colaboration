@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Notes from './Notes'
-import logo from './logo.svg';
+import NewNote from './NewNote';
+// import logo from './logo.svg';
 // import './App.css';
 
 class App extends Component {
@@ -25,17 +26,33 @@ class App extends Component {
         done: false,
         deadLine: new Date()
       },
+      {
+        id:2,
+        title: 'test',
+        date: new Date(),
+        content: 'to jest jakiś tekst',
+        color: '#999',
+        done: false,
+        deadLine: new Date()
+      },
 
     ]
   }
   addNote = (newNote) => {
     let arr = this.state.notes;
-    newNote.id = arr.length;
+    let maxId = this.state.notes.reduce((prev, cur) => {
+      console.log(`cur: ${cur.id} prev: ${prev.id}`)
+      return (cur.id > prev.id)?cur:prev
+    })
+
+    console.log(maxId)
+    newNote.id = maxId.id+1;
     newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
     
     arr.push(newNote)
     this.setState({notes: arr})
   }
+
   addDay = (note) => {
     note.deadLine.setDate(note.deadLine.getDate() + 1)
     this.changeNote(note)
@@ -71,6 +88,7 @@ class App extends Component {
           notes={notes}
           dateToString={this.dateToString}
         />
+        
         <div className="add-note-button" onClick={() => {
             this.addNote({
               
@@ -80,10 +98,11 @@ class App extends Component {
               deadLine: new Date()
 
             });
+            
             console.log(this.state.notes)
 
-          }
-        }>
+          }}
+        >
 
         </div>
 
