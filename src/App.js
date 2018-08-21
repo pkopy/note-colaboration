@@ -9,43 +9,20 @@ import { Route } from 'react-router-dom'
 class App extends Component {
   state = {
     notes:[
-      {
-        id:0,
-        title: 'test',
-        date: new Date(),
-        content: 'to jest jakiś tekst',
-        color: '#222',
-        done: false,
-        deadLine: new Date()
       
-      },
-      {
-        id:1,
-        title: 'test',
-        date: new Date(),
-        content: 'to jest jakiś tekst',
-        color: '#999',
-        done: false,
-        deadLine: new Date()
-      },
-      {
-        id:2,
-        title: 'test',
-        date: new Date(),
-        content: 'to jest jakiś tekst',
-        color: '#999',
-        done: false,
-        deadLine: new Date()
-      },
 
     ]
   }
   addNote = (newNote) => {
     let arr = this.state.notes;
-    let maxId = this.state.notes.reduce((prev, cur) => {
-      console.log(`cur: ${cur.id} prev: ${prev.id}`)
-      return (cur.id > prev.id)?cur:prev
-    })
+    let maxId = {id:-1}
+    if(arr.length !== 0){
+      maxId = this.state.notes.reduce((prev, cur) => {
+        console.log(`cur: ${cur.id} prev: ${prev.id}`)
+        return (cur.id > prev.id)?cur:prev
+      })
+      
+    }
 
     console.log(maxId)
     newNote.id = maxId.id+1;
