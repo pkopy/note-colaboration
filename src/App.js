@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Notes from './Notes'
 import NewNote from './NewNote';
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -79,17 +81,20 @@ class App extends Component {
     const { notes } = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>Oh Note</h1>
-        </header>
-        <Notes 
-          minusDay={this.minusDay}
-          addDay={this.addDay}
-          notes={notes}
-          dateToString={this.dateToString}
-        />
         
-        <div className="add-note-button" onClick={() => {
+        <Route exact path="/" render={() =>(
+          <Notes 
+            minusDay={this.minusDay}
+            addDay={this.addDay}
+            notes={notes}
+            dateToString={this.dateToString}
+          />
+          
+
+        )}/>
+
+        <Route path="/new" component={NewNote}/>
+        {/* <div className="add-note-button" onClick={() => {
             this.addNote({
               
               title: 'new',
@@ -104,7 +109,11 @@ class App extends Component {
           }}
         >
 
-        </div>
+        </div> */}
+        <Link
+          to="/new"
+          className="add-note-button"
+        ></Link>
 
       </div>
     );

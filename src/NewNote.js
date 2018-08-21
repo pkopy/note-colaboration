@@ -4,7 +4,7 @@ class NewNote extends Component {
   render () {
     return (
       <div>
-        
+        XXXXXXXXX
       </div>
     )
   }
