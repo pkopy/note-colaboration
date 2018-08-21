@@ -7,8 +7,11 @@ class NewNote extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true})
-    
-   this.props.addNote(values)
+    console.log(values)
+    if(!values.title){
+      values.title = 'New NOte'
+    }
+    this.props.addNote(values)
   }
   render () {
     return (
