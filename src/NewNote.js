@@ -6,10 +6,10 @@ class NewNote extends Component {
   state = {
     itemsList: [
       {
-        title:'Chojrak'
+        title:'First TODO'
       },
       {
-        title: 'Tadeusz'
+        title: 'Second TODO'
       }
     ]
   }
@@ -42,13 +42,13 @@ class NewNote extends Component {
     {list?(<textarea onKeyUp={(e)=> this.adjustTextArea(e, document.querySelector('textarea'))} name="content" placeholder="content"/>):
             (<ol>
               {this.state.itemsList.map((item) =>(
-                <li>{item.title}</li>
+                <li className="list-item">{item.title}<input type="checkbox" name="done" value="true"/></li>
               ))}
             </ol>)
             
             }
             
-            <input type="checkbox" name="done" value="true" onClick={() => changeToList()}/><br/>
+            <input type="checkbox" name="list" value="true" onClick={() => changeToList()}/><br/>
             <input type="date" name="dline"/><br/>
             <Link className="close-new-note-button" to="/">Close</Link><br/>
             <button className="add-note-button"></button>

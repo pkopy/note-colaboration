@@ -27,7 +27,7 @@ class Notes extends Component {
                   </div>
 
                 </div>
-                <div>Deadline: {note.deadLine.getDate()}</div>
+                <div>it is only: {note.deadLine.getDate()-note.date.getDate()} days</div>
               </div>
             </li>
           )}
