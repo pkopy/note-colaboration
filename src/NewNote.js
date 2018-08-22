@@ -15,15 +15,15 @@ class NewNote extends Component {
   }
   render () {
     return (
-      <div>
-        <Link className="close-new-note-button" to="/">Close</Link>
+      <div style={{marginTop:'2em'}}>
         <form onSubmit={this.handleSubmit} className="create-new-note-form">
           <div className="new-note-details">
-            <input type="text" name="title" placeholder="Title"/>
-            <input type="text" name="content" placeholder="content"/>
-            <input type="checkbox" name="done" value="true"/>
-            <input type="date" name="dline"/>
-            <button>Send</button>
+            <input type="text" name="title" placeholder="Title"/><br/>
+            <textarea  name="content" placeholder="content"/><br/>
+            <input type="checkbox" name="done" value="true"/><br/>
+            <input type="date" name="dline"/><br/>
+            <Link className="close-new-note-button" to="/">Close</Link><br/>
+            <button className="add-note-button"></button>
           </div>
         
         </form>

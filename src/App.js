@@ -28,6 +28,10 @@ class App extends Component {
     newNote.id = maxId.id+1;
     newNote.date =new Date();
     newNote.deadLine = new Date();
+    if(newNote.dline) {
+      newNote.deadLine.setDate(newNote.dline.slice(8)) 
+
+    }
     newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
     
     arr.push(newNote)
