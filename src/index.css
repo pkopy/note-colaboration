@@ -89,7 +89,7 @@ body {
   width: -webkit-fill-available;
   margin: 1em;
   padding: .5em;
-  height: 521px;
+  overflow: hidden;
   resize: none;
 }
 

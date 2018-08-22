@@ -11,8 +11,15 @@ class App extends Component {
     notes:[
       
 
-    ]
+    ],
+    list: true
   }
+
+  changeToList = () => {
+    this.state.list?this.setState({list: false}):this.setState({list: true})
+    
+  }
+
   addNote = (newNote) => {
     let arr = this.state.notes;
     let maxId = {id:-1}
@@ -85,6 +92,8 @@ class App extends Component {
             this.addNote(note);
             history.push('/')
           }}
+          list={this.state.list}
+          changeToList={this.changeToList}
           /> 
         )}/>
         {/* <div className="add-note-button" onClick={() => {
