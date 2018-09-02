@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 import Notes from './Notes';
 
 class Login extends Component {
-  state = {
-    user: {}
-  }
+  
   loginUser = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true})
@@ -22,7 +20,7 @@ class Login extends Component {
         if(data.login){
 
           this.props.setUser(data);
-          this.setState({user:data})
+          // this.setState({user:data})
         }
         console.log(data)
         
@@ -35,7 +33,7 @@ class Login extends Component {
 
   render () {
 
-    const { login, minusDay, addDay, notes, dateToString} = this.props;
+    const { login, minusDay, addDay, notes, dateToString, user} = this.props;
     return (
       <div>
         {login?
@@ -45,7 +43,7 @@ class Login extends Component {
           notes={notes}
           dateToString={dateToString}
           login={login}
-          user={this.state.user}
+          user={user}
           />:
         (<form method="POST" onSubmit={this.loginUser}>
           user:<input type="text" name="user"/>

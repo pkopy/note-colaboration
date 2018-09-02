@@ -93,6 +93,11 @@ class App extends Component {
           
           <StartPanel
             login={user.login}
+            minusDay={this.minusDay}
+            addDay={this.addDay}
+            notes={notes}
+            dateToString={this.dateToString}
+            user={user}
           />
           
         )}/>
@@ -122,6 +127,7 @@ class App extends Component {
             notes={notes}
             dateToString={this.dateToString}
             login={user.login}
+            user={user}
           />
         )}/>
 
