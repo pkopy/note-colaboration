@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 class Notes extends Component {
   render () {
 
-    const { notes, dateToString, addDay, minusDay, login } = this.props
+    const { notes, dateToString, addDay, minusDay, login, user } = this.props
     return (
       <div>
         <header className="App-header">
             <h1>Oh Note</h1>
-            {login?(<div>ZALOGOWANY</div>):(<div>NIEZALOGOWANY</div>)}
+            {login?(<div>{user.user} - ZALOGOWANY</div>):(<div>NIEZALOGOWANY</div>)}
         </header>
         <ol>
           {notes.map(note => 

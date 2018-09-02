@@ -6,7 +6,7 @@ class Register extends Component {
   registerUser = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true})
-    fetch('http://40.115.96.228/register',{
+    fetch('http://40.115.96.228:8080/register',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

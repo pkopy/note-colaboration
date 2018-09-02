@@ -16,7 +16,9 @@ class App extends Component {
 
     ],
     list: true,
-    login: false
+    user: {
+      login: false
+    }
   }
 
   changeToList = () => {
@@ -68,15 +70,15 @@ class App extends Component {
     return `${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}`;
   }
 
-  setUser = () => {
+  setUser = (data) => {
     
-     this.setState({login:true})
-    
+    console.log(data)
+     this.setState({user: data})
 
   }
   render() {
 
-    const { notes, login } = this.state
+    const { notes, user} = this.state
     return (
       <div className="App">
         
@@ -88,8 +90,9 @@ class App extends Component {
           //   dateToString={this.dateToString}
 
           // />
+          
           <StartPanel
-            login={this.state.login}
+            login={user.login}
           />
           
         )}/>
@@ -101,7 +104,7 @@ class App extends Component {
             this.addNote(note);
             history.push('/login')
           }}
-          login={login}
+          login={user.login}
           list={this.state.list}
           changeToList={this.changeToList}
           /> 
@@ -109,8 +112,8 @@ class App extends Component {
 
         <Route path="/login" render={() => (
           <Login 
-            setUser={() => {
-              this.setUser();
+            setUser={(data) => {
+              this.setUser(data);
 
             
             }}
@@ -118,7 +121,7 @@ class App extends Component {
             addDay={this.addDay}
             notes={notes}
             dateToString={this.dateToString}
-            login={login}
+            login={user.login}
           />
         )}/>
 

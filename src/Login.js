@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import Notes from './Notes';
 
 class Login extends Component {
-
+  state = {
+    user: {}
+  }
   loginUser = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true})
-    fetch('http://40.115.96.228/login',{
+    fetch('http://40.115.96.228:8080/login',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -19,7 +21,8 @@ class Login extends Component {
         console.log(data.login)
         if(data.login){
 
-          this.props.setUser();
+          this.props.setUser(data);
+          this.setState({user:data})
         }
         console.log(data)
         
@@ -42,6 +45,7 @@ class Login extends Component {
           notes={notes}
           dateToString={dateToString}
           login={login}
+          user={this.state.user}
           />:
         (<form method="POST" onSubmit={this.loginUser}>
           user:<input type="text" name="user"/>
