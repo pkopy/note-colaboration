@@ -3,6 +3,9 @@ import Notes from './Notes'
 import NewNote from './NewNote';
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
+import StartPanel from './StartPanel'
+import Login from './Login'
+import Register from './Register'
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -12,7 +15,8 @@ class App extends Component {
       
 
     ],
-    list: true
+    list: true,
+    login: false
   }
 
   changeToList = () => {
@@ -60,42 +64,69 @@ class App extends Component {
     arr.push(note)
     this.setState({notes: arr})
   }
-  dateToString = (note) => {
-    
+  dateToString = (note) => { 
     return `${note.date.getDate()} - ${note.date.getMonth() + 1} - ${note.date.getFullYear()}`;
+  }
+
+  setUser = () => {
+    
+     this.setState({login:true})
+    
 
   }
   render() {
 
-    const { notes } = this.state
+    const { notes, login } = this.state
     return (
       <div className="App">
         
         <Route exact path="/" render={() =>(
-          <Notes 
-            minusDay={this.minusDay}
-            addDay={this.addDay}
-            notes={notes}
-            dateToString={this.dateToString}
-            
+          // <Notes 
+          //   minusDay={this.minusDay}
+          //   addDay={this.addDay}
+          //   notes={notes}
+          //   dateToString={this.dateToString}
 
-            
+          // />
+          <StartPanel
+            login={this.state.login}
           />
           
-          
-
         )}/>
 
         <Route path="/new" render={({ history }) =>(
+          
           <NewNote 
           addNote={(note) => {
             this.addNote(note);
-            history.push('/')
+            history.push('/login')
           }}
+          login={login}
           list={this.state.list}
           changeToList={this.changeToList}
           /> 
         )}/>
+
+        <Route path="/login" render={() => (
+          <Login 
+            setUser={() => {
+              this.setUser();
+
+            
+            }}
+            minusDay={this.minusDay}
+            addDay={this.addDay}
+            notes={notes}
+            dateToString={this.dateToString}
+            login={login}
+          />
+        )}/>
+
+        <Route path="/register" render={() => (
+          <Register />
+        )}
+        />
+
         {/* <div className="add-note-button" onClick={() => {
             this.addNote({
               

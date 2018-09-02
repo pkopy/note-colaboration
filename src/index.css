@@ -108,6 +108,19 @@ body {
   background: #3390dc;
   transition-duration: 0.4s;
 }
+
+/* ==== START PANEL ==== */
+
+.login-button {
+  border: none;
+  background: #3390dc;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px;
+}
 /*=========================*/
 
 .App {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import serializeForm from 'form-serialize'
+import App from './App'
 
 class NewNote extends Component {
   state = {
@@ -26,17 +27,20 @@ class NewNote extends Component {
   adjustTextArea = (e, ata) =>{
     // A fixed number lets say 20 to add for no clumsyness
     if(e.keyCode === 13) {
-      ata.style.height = (ata.scrollHeight)+"px";
+      ata.style.height = `${ata.scrollHeight}px`;
 
     }
 }
 
   render () {
 
-    const  { list, changeToList } = this.props
+    const  { list, changeToList,login } = this.props
     return (
+      
       <div style={{marginTop:'2em'}}>
-        <form onSubmit={this.handleSubmit} className="create-new-note-form">
+      {login? 
+      
+        (<form onSubmit={this.handleSubmit} className="create-new-note-form">
           <div className="new-note-details">
             <input type="text" name="title" placeholder="Title"/><br/>
     {list?(<textarea onKeyUp={(e)=> this.adjustTextArea(e, document.querySelector('textarea'))} name="content" placeholder="content"/>):
@@ -54,7 +58,8 @@ class NewNote extends Component {
             <button className="add-note-button"></button>
           </div>
         
-        </form>
+        </form>):<Link to="/">You must to login first</Link>
+      }
       </div>
     )
   }
