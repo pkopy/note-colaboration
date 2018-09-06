@@ -74,7 +74,19 @@ class App extends Component {
     
     console.log(data)
      this.setState({user: data})
+     this.render()
 
+  }
+
+  track = (e) => {
+    window.addEventListener('click', (e) => {
+      console.log(e)
+    })
+  }
+  unTrack = (e) => {
+    window.addEventListener('mousemove', (e) => {
+      console.log(e)
+    })
   }
   render() {
 
@@ -107,7 +119,7 @@ class App extends Component {
           <NewNote 
           addNote={(note) => {
             this.addNote(note);
-            history.push('/login')
+            history.push('/notes')
           }}
           login={user.login}
           list={this.state.list}
@@ -115,12 +127,11 @@ class App extends Component {
           /> 
         )}/>
 
-        <Route path="/login" render={() => (
+        <Route path="/login" render={({ history }) => (
           <Login 
             setUser={(data) => {
               this.setUser(data);
-
-            
+              history.push('/notes')
             }}
             minusDay={this.minusDay}
             addDay={this.addDay}
@@ -128,11 +139,26 @@ class App extends Component {
             dateToString={this.dateToString}
             login={user.login}
             user={user}
+            track={this.track()}
           />
         )}/>
 
         <Route path="/register" render={() => (
           <Register />
+        )}
+        />
+
+        <Route path="/notes" render={({ history }) => (
+          <Notes 
+          login={user.login}
+          minusDay={this.minusDay}
+          addDay={this.addDay}
+          notes={notes}
+          dateToString={this.dateToString}
+          user={user}
+          unTrack={this.unTrack()}
+          
+          />
         )}
         />
 
