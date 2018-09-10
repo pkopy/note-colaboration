@@ -13,7 +13,6 @@ class App extends Component {
   state = {
     notes:[
       
-
     ],
     list: true,
     user: {
