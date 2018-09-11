@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 class Notes extends Component {
+  state = {
+    h:0,
+    w:0,
+    
+
+  }
+  setPosition = (number) => {
+    let width = window.innerWidth/150;
+    
+    if(number + 1 < width) {
+      
+      
+      return (number) * 150;
+    }
+    
+      
+    
+    
+
+  }
   render () {
 
     const { notes, dateToString, addDay, minusDay, login, user } = this.props
@@ -12,10 +32,12 @@ class Notes extends Component {
             {login?(<div>{user.user} - ZALOGOWANY</div>):(<div>NIEZALOGOWANY</div>)}
         </header>
         <ol>
-          {notes.map(note => 
+          {notes.map((note, inx) => 
+            
             <li key={note.id} className="notes-list">
-              <div className="note" style={{background: note.color, left:note.id*200+'px'}} >
-                {dateToString(note)}
+
+              <div className="note" style={{background: note.color, left:this.setPosition(inx) +'px', top: 200 +'px'}} >
+                {/* {dateToString(note)} */}
 
                 <div>Title: {note.title}</div>
                 <div>Content: {note.content}</div>
@@ -28,9 +50,10 @@ class Notes extends Component {
                   </div>
 
                 </div>
-                <div>it is only: {note.deadLine.getDate()-note.date.getDate()} days</div>
+                {/* <div>it is only: {note.deadLine.getDate()-note.date.getDate()} days</div> */}
               </div>
             </li>
+          
           )}
         </ol>
         <Link

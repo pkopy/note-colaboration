@@ -8,7 +8,8 @@ class Login extends Component {
   loginUser = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true})
-    fetch('http://40.115.96.228:8080/login',{
+    // fetch('http://40.115.96.228:8080/login',{
+    fetch('http://localhost:8080/login',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -16,10 +17,11 @@ class Login extends Component {
         body: JSON.stringify(values)
       }).then(res => res.json())
       .then((data) => {
-        console.log(data.login)
+        console.log(data.notes)
         if(data.login){
 
           this.props.setUser(data);
+          this.props.addAllNotes(data.notes)
           // this.setState({user:data})
         }
         console.log(data)
@@ -46,7 +48,7 @@ class Login extends Component {
           user={user}
           />:
         (<form method="POST" onSubmit={this.loginUser}>
-          user:<input type="text" name="user"/>
+          email:<input type="text" name="email"/>
           passw:<input type="password" name="password"/>
           <button className="login-button">Login</button>
         </form>)

@@ -45,8 +45,8 @@ class NewNote extends Component {
             <input type="text" name="title" placeholder="Title"/><br/>
     {list?(<textarea onKeyUp={(e)=> this.adjustTextArea(e, document.querySelector('textarea'))} name="content" placeholder="content"/>):
             (<ol>
-              {this.state.itemsList.map((item) =>(
-                <li className="list-item">{item.title}<input type="checkbox" name="done" value="true"/></li>
+              {this.state.itemsList.map((item, indx) =>(
+                <li key={indx} className="list-item">{item.title}<input type="checkbox" name="done" value="true"/></li>
               ))}
             </ol>)
             

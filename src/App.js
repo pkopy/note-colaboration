@@ -31,23 +31,55 @@ class App extends Component {
     if(arr.length !== 0){
       maxId = this.state.notes.reduce((prev, cur) => {
         console.log(`cur: ${cur.id} prev: ${prev.id}`)
-        return (cur.id > prev.id)?cur:prev
+        return (cur.id *1 > prev.id * 1)?cur:prev
       })
       
     }
-
+    
     console.log(maxId)
-    newNote.id = maxId.id+1;
-    newNote.date =new Date();
-    newNote.deadLine = new Date();
+    newNote.id = maxId.id*1+1;
+    newNote.userId = this.state.user.userId;
+    newNote.creationDate =new Date();
+    newNote.categoryId = 1;
+    newNote.editDate = "zzzzz";
+    newNote.priority = 1;
+    newNote.executionTime = "ooo";
+    newNote.done = 0;
+
     if(newNote.dline) {
       newNote.deadLine.setDate(newNote.dline.slice(8)) 
 
     }
-    newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
+    // newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
+    newNote.color = '#555'
     
-    arr.push(newNote)
-    this.setState({notes: arr})
+    newNote.id='';
+    fetch('http://localhost:8080/addnote',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newNote)
+      }).then(res => res.json())
+      .then((data) => {
+        console.log(data)
+        
+        console.log(data.status)
+        if(data.status !== 500) {
+          arr.push(newNote)
+          this.setState({notes: arr})
+
+        }
+        
+      })
+      .catch(err => {
+      
+        console.log(err)
+      })
+  }
+
+  addAllNotes = (arr) => {
+    this.setState({notes:arr})
   }
 
   addDay = (note) => {
@@ -109,6 +141,7 @@ class App extends Component {
             notes={notes}
             dateToString={this.dateToString}
             user={user}
+            
           />
           
         )}/>
@@ -138,7 +171,8 @@ class App extends Component {
             dateToString={this.dateToString}
             login={user.login}
             user={user}
-            track={this.track()}
+            addAllNotes={this.addAllNotes}
+            // track={this.track()}
           />
         )}/>
 
@@ -155,7 +189,7 @@ class App extends Component {
           notes={notes}
           dateToString={this.dateToString}
           user={user}
-          unTrack={this.unTrack()}
+          // unTrack={this.unTrack()}
           
           />
         )}
