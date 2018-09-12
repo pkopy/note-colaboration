@@ -121,6 +121,10 @@ body {
   border-radius: 5px;
   margin: 10px;
 }
+
+.oko {
+  display: inline;
+}
 /*=========================*/
 
 .App {
