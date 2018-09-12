@@ -53,6 +53,7 @@ class App extends Component {
     // newNote.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}`
     newNote.color = '#555'
     
+    
     newNote.id='';
     fetch('http://localhost:8080/addnote',{
         method: 'POST',
